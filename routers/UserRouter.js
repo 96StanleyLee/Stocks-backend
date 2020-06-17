@@ -56,7 +56,7 @@ router.post('/logout', async (req, res)=>{
 })
 
 
-router.post('/add', async (req, res)=>{
+router.post('/portfolio', async (req, res)=>{
 
     let data = await req.body
 
