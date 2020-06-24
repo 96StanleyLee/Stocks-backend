@@ -60,6 +60,7 @@ router.post('/portfolio', async (req, res)=>{
 
     let data = await req.body
 
+    
 
     let user = await User.findById(data.user._id)
 
@@ -77,7 +78,7 @@ router.post('/portfolio', async (req, res)=>{
     let test = await user.populate('stocks')
     console.log(test)
     
-    res.send(user)
+    res.send(portfolio)
 })
 
 router.get('/portfolio', async (req, res)=>{
