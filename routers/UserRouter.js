@@ -82,8 +82,11 @@ router.post('/portfolio', async (req, res)=>{
 })
 
 router.get('/portfolio', async (req, res)=>{
-    let _id = {_id: '5ee7c3bbb725c644d6e19826'}
-    let user = await User.findById(_id._id).populate({
+    let _id = await req.query._id
+    console.log(_id)
+
+    
+    let user = await User.findById(_id).populate({
         path: 'stocks',
         model: 'Portfolio'
     })
