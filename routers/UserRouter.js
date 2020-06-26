@@ -57,35 +57,24 @@ router.post('/logout', async (req, res)=>{
 
 
 router.post('/portfolio', async (req, res)=>{
-
     let data = await req.body
-
-    
-
     let user = await User.findById(data.user._id)
-
     const portfolio = new Portfolio({
         ticker: data.stock,
         user: data.user._id
     })
-    
+
     await portfolio.save()
-
     user.stocks = user.stocks.concat(portfolio)
-
     await user.save()
-
     let test = await user.populate('stocks')
     console.log(test)
     
     res.send(portfolio)
 })
 
-router.get('/portfolio', async (req, res)=>{
-    let _id = await req.query._id
-    console.log(_id)
-
-    
+router.get('/portfolio/:id', async (req, res)=>{
+    let _id = await req.params.id
     let user = await User.findById(_id).populate({
         path: 'stocks',
         model: 'Portfolio'
